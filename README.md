@@ -1,5 +1,15 @@
 # Datos
 
+## cantones
+```shell
+# Reproyección a WGS84, validación de geometrías y borrado de columnas innecesarias
+ogr2ogr -t_srs EPSG:4326 -makevalid \
+  -select "cod_canton, canton, cod_provin, provincia, ha_canton" \
+  -nln cantones \
+  cantones/processed/cantones.geojson \
+  /vsizip/metricas-servicios-ecosistemicos/raw/metrias_SE_cantones.zip
+```
+
 ## infraestructura
 ```shell
 # Para el servicio WMS
