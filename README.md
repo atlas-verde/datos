@@ -8,7 +8,7 @@ gdalwarp -t_srs EPSG:5367 -dstnodata -9999 -of vrt \
   infraestructura/raw/infraestructura_verde.tif /vsistdout/ \
   | gdal_translate -co compress=lzw /vsistdin/ infraestructura/processed/infraestructura-5367.tif
 
-# Para un archivo local
+# Para un archivo raster local
 # Reproyección a Web Mercator, cambio de resolución y compresión
 gdalwarp -t_srs EPSG:3857 -dstnodata -9999 -tr 30 30 -of vrt \
   infraestructura/raw/infraestructura_verde.tif /vsistdout/ \
@@ -17,6 +17,9 @@ gdalwarp -t_srs EPSG:3857 -dstnodata -9999 -tr 30 30 -of vrt \
 gdalwarp -t_srs EPSG:4326 -of vrt \
   infraestructura/interim/infraestructura-3857.tif /vsistdout/ \
   | gdal_translate -co compress=lzw /vsistdin/ infraestructura/processed/infraestructura.tif
+  
+# Para los datos de áreas de infraestructura por cantón
+cp infraestructura/raw/matrices.xlsx infraestructura/processed/infraestructura-cantones.xlsx
   
 # Reubicación de archivos muy grandes para repositorios GitHub
 mv infraestructura/raw/infraestructura_verde.tif ~/Downloads
