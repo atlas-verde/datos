@@ -29,7 +29,7 @@ gdalwarp -t_srs EPSG:4326 -of vrt \
   | gdal_translate -co compress=lzw /vsistdin/ infraestructura/processed/infraestructura.tif
   
 # Para los datos de áreas de infraestructura por cantón
-cp infraestructura/raw/matrices.xlsx infraestructura/processed/infraestructura-cantones.xlsx
+cp infraestructura/raw/matrices_corregidas.xlsx infraestructura/processed/infraestructura-cantones.xlsx
   
 # Reubicación de archivos muy grandes para repositorios GitHub
 mv infraestructura/raw/infraestructura_verde.tif ~/Downloads
