@@ -1,5 +1,37 @@
 # Datos
 
+## temperatura-superficial
+
+### promedio
+```shell
+# Para el servicio WMS
+# Reproyección a CRTM05 y compresión
+gdalwarp -t_srs EPSG:5367 -dstnodata -9999 -of vrt \
+  temperatura-superficial/raw/lst_promedio.tif /vsistdout/ \
+  | gdal_translate -co compress=lzw /vsistdin/ temperatura-superficial/processed/temperatura-superficial-promedio-5367.tif
+  
+# Para un archivo raster local
+# Reproyección a WGS84 y compresión
+gdalwarp -t_srs EPSG:4326 -dstnodata -9999 -of vrt \
+  temperatura-superficial/raw/lst_promedio.tif /vsistdout/ \
+  | gdal_translate -co compress=lzw /vsistdin/ temperatura-superficial/processed/temperatura-superficial-promedio.tif
+```
+
+### máxima
+```shell
+# Para el servicio WMS
+# Reproyección a CRTM05 y compresión
+gdalwarp -t_srs EPSG:5367 -dstnodata -9999 -of vrt \
+  temperatura-superficial/raw/lst_max.tif /vsistdout/ \
+  | gdal_translate -co compress=lzw /vsistdin/ temperatura-superficial/processed/temperatura-superficial-maxima-5367.tif
+  
+# Para un archivo raster local
+# Reproyección a WGS84 y compresión
+gdalwarp -t_srs EPSG:4326 -dstnodata -9999 -of vrt \
+  temperatura-superficial/raw/lst_max.tif /vsistdout/ \
+  | gdal_translate -co compress=lzw /vsistdin/ temperatura-superficial/processed/temperatura-superficial-maxima.tif
+```
+
 ## cantones
 ```shell
 # Reproyección a WGS84, validación de geometrías y borrado de columnas innecesarias
@@ -13,7 +45,7 @@ ogr2ogr -t_srs EPSG:4326 -makevalid \
 ## infraestructura
 ```shell
 # Para el servicio WMS
-# Reproyección a CRTM05 (para el servicio WMS), cambio de resolución y compresión
+# Reproyección a CRTM05, cambio de resolución y compresión
 gdalwarp -t_srs EPSG:5367 -dstnodata -9999 -of vrt \
   infraestructura/raw/infraestructura_verde.tif /vsistdout/ \
   | gdal_translate -co compress=lzw /vsistdin/ infraestructura/processed/infraestructura-5367.tif
