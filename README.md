@@ -98,6 +98,22 @@ csvcut -c species,year,decimalLongitude,decimalLatitude \
 rm 0196052-230224095556074.zip
 ```
 
+## probabilidad-conectividad-biologica
+
+```shell
+# Para el servicio WMS
+# Reproyección a CRTM05 y compresión
+gdalwarp -t_srs EPSG:5367 -dstnodata -9999 -of vrt \
+  probabilidad-conectividad-biologica/raw/probabilidad_conectividad_gam.tif /vsistdout/ \
+  | gdal_translate -co compress=lzw /vsistdin/ probabilidad-conectividad-biologica/processed/probabilidad-conectividad-biologica-5367.tif
+  
+# Para un archivo raster local
+# Reproyección a WGS84 y compresión
+gdalwarp -t_srs EPSG:4326 -dstnodata -9999 -of vrt \
+  probabilidad-conectividad-biologica/raw/probabilidad_conectividad_gam.tif /vsistdout/ \
+  | gdal_translate -co compress=lzw /vsistdin/ probabilidad-conectividad-biologica/processed/probabilidad-conectividad-biologica.tif
+```
+
 ## temperatura-superficial
 
 ### promedio
