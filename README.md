@@ -182,6 +182,14 @@ mv infraestructura/raw/infraestructura_verde.tif ~/Downloads
 mv infraestructura/processed/infraestructura-5367.tif ~/Downloads
 ```
 
+## metricas-corredores
+```shell
+# Reproyección a WGS84, validación de geometrías y conversión a GeoJSON
+ogr2ogr -t_srs EPSG:4326 -makevalid \
+  metricas-corredores/processed/metricas-corredores.geojson \
+  /vsizip/metricas-corredores/raw/metricas_corredores.zip
+```
+
 ## metricas-servicios-ecosistemicos
 ```shell
 # Reproyección a WGS84, validación de geometrías y conversión a GeoJSON
