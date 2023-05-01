@@ -146,6 +146,10 @@ gdalwarp -t_srs EPSG:4326 -dstnodata -9999 -of vrt \
   | gdal_translate -co compress=lzw /vsistdin/ temperatura-superficial/processed/temperatura-superficial-maxima.tif
 ```
 
+## corredores
+# Se editó manualmente y se guardó en corredores/processed/corredores.geojson
+# Puede procesarse como cantones
+
 ## cantones
 ```shell
 # Reproyección a WGS84, validación de geometrías y borrado de columnas innecesarias
@@ -174,8 +178,11 @@ gdalwarp -t_srs EPSG:4326 -of vrt \
   infraestructura/interim/infraestructura-3857.tif /vsistdout/ \
   | gdal_translate -co compress=lzw /vsistdin/ infraestructura/processed/infraestructura.tif
   
-# Para los datos de áreas de infraestructura por cantón
+# Para los datos de áreas de infraestructura por cantón y por corredor
 cp infraestructura/raw/matrices_corregidas.xlsx infraestructura/processed/infraestructura-cantones.xlsx
+# OJO: En este archivo fue necesario corregir las tildes de "Río Torres" y "María Aguilar"
+# para que queden igual que en el archivo geoespacial de corredores
+cp infraestructura/raw/matrices_corregidas.xlsx infraestructura/processed/infraestructura-corredores.xlsx
   
 # Reubicación de archivos muy grandes para repositorios GitHub
 mv infraestructura/raw/infraestructura_verde.tif ~/Downloads
