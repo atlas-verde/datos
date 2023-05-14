@@ -147,8 +147,8 @@ gdalwarp -t_srs EPSG:4326 -dstnodata -9999 -of vrt \
 ```
 
 ## corredores
-# Se editó manualmente y se guardó en corredores/processed/corredores.geojson
-# Puede procesarse como cantones
+Se editó manualmente y se guardó en corredores/processed/corredores.geojson.
+Los corredores pueden procesarse igual que los cantones.
 
 ## cantones
 ```shell
@@ -190,7 +190,9 @@ cp infraestructura/raw/matrices.xlsx infraestructura/processed/infraestructura-c
   
 # Reubicación de archivos muy grandes para repositorios GitHub
 mv infraestructura/raw/infraestructura_gam.tif ~/Downloads
-mv infraestructura/interim/infraestructura-3857.tif ~/Downloads
+
+# El siguiente archivo también debe reubicarse,
+# pero antes debe trasladarse al servidor GeoServer
 mv infraestructura/processed/infraestructura-5367.tif ~/Downloads
 ```
 
