@@ -165,27 +165,32 @@ ogr2ogr -t_srs EPSG:4326 -makevalid \
 # Para el servicio WMS
 # Reproyección a CRTM05, cambio de resolución y compresión
 gdalwarp -t_srs EPSG:5367 -dstnodata -9999 -of vrt \
-  infraestructura/raw/infraestructura_verde.tif /vsistdout/ \
+  infraestructura/raw/infraestructura_gam.tif /vsistdout/ \
   | gdal_translate -co compress=lzw /vsistdin/ infraestructura/processed/infraestructura-5367.tif
 
 # Para un archivo raster local
 # Reproyección a Web Mercator, cambio de resolución y compresión
 gdalwarp -t_srs EPSG:3857 -dstnodata -9999 -tr 30 30 -of vrt \
-  infraestructura/raw/infraestructura_verde.tif /vsistdout/ \
+  infraestructura/raw/infraestructura_gam.tif /vsistdout/ \
   | gdal_translate -co compress=lzw /vsistdin/ infraestructura/interim/infraestructura-3857.tif
 # Reproyección a WGS84 y compresión
 gdalwarp -t_srs EPSG:4326 -of vrt \
   infraestructura/interim/infraestructura-3857.tif /vsistdout/ \
   | gdal_translate -co compress=lzw /vsistdin/ infraestructura/processed/infraestructura.tif
   
-# Para los datos de áreas de infraestructura por cantón y por corredor
-cp infraestructura/raw/matrices_corregidas.xlsx infraestructura/processed/infraestructura-cantones.xlsx
+# El archivo QML debe convertirse desde QGIS a SLD con el nombre:
+# processed/infraestructura.sld
+  
+# Para los datos XLSX de áreas de infraestructura por cantón y por corredor
+# OJO: en cada caso debe borrarse manualmente la hoja que sobra.
+cp infraestructura/raw/matrices.xlsx infraestructura/processed/infraestructura-cantones.xlsx
 # OJO: En este archivo fue necesario corregir las tildes de "Río Torres" y "María Aguilar"
 # para que queden igual que en el archivo geoespacial de corredores
-cp infraestructura/raw/matrices_corregidas.xlsx infraestructura/processed/infraestructura-corredores.xlsx
+cp infraestructura/raw/matrices.xlsx infraestructura/processed/infraestructura-corredores.xlsx
   
 # Reubicación de archivos muy grandes para repositorios GitHub
-mv infraestructura/raw/infraestructura_verde.tif ~/Downloads
+mv infraestructura/raw/infraestructura_gam.tif ~/Downloads
+mv infraestructura/interim/infraestructura-3857.tif ~/Downloads
 mv infraestructura/processed/infraestructura-5367.tif ~/Downloads
 ```
 
