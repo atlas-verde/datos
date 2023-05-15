@@ -182,7 +182,7 @@ gdalwarp -t_srs EPSG:4326 -of vrt \
 # processed/infraestructura.sld
   
 # Para los datos XLSX de áreas de infraestructura por cantón y por corredor
-# OJO: en cada caso debe borrarse manualmente la hoja que sobra.
+# OJO: en cada caso debe borrarse manualmente la hoja (tab) que sobra
 cp infraestructura/raw/matrices.xlsx infraestructura/processed/infraestructura-cantones.xlsx
 # OJO: En este archivo fue necesario corregir las tildes de "Río Torres" y "María Aguilar"
 # para que queden igual que en el archivo geoespacial de corredores
